@@ -145,7 +145,7 @@ def get_route(hostname):
                     tracelist1.append(str(ttl))
                     tracelist1.append(RTT)
                     tracelist1.append(addr[0])
-                    tracelist1.append(destAddr)
+                    tracelist1.append(destAddr[0])
                     tracelist2.append(tracelist1)
                     #print('Type:11')
                     #for i in tracelist2:
@@ -160,7 +160,7 @@ def get_route(hostname):
                     tracelist1.append(str(ttl))
                     tracelist1.append(RTT)
                     tracelist1.append(addr[0])
-                    tracelist1.append(destAddr)
+                    tracelist1.append(destAddr[0])
                     tracelist2.append(tracelist1)
                     #print('Type:3')
                     #for i in tracelist2:
@@ -188,7 +188,7 @@ def get_route(hostname):
                     tracelist1.append(str(ttl))
                     tracelist1.append(RTT)
                     tracelist1.append(addr[0])
-                    tracelist1.append(destAddr)
+                    tracelist1.append(destAddr[0])
                     tracelist2.append(tracelist1)
                     #print(6)
                     #for i in tracelist2:
