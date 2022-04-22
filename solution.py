@@ -79,6 +79,7 @@ def get_route(hostname):
 
     for ttl in range(1,MAX_HOPS):
         for tries in range(TRIES):
+            print('Start of for loop')
             tracelist1 = [] #This is your list to use when iterating through each trace 
             #Fill in start
             # Make a raw socket named mySocket
