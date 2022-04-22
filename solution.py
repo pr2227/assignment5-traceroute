@@ -87,19 +87,23 @@ def get_route(hostname):
                 whatReady = select.select([mySocket], [], [], timeLeft)
                 howLongInSelect = (time.time() - startedSelect)
                 if whatReady[0] == []: # Timeout
+                    tracelist1.append(ttl)
                     tracelist1.append("* * * Request timed out.")
                     #Fill in start
                     #You should add the list above to your all traces list
-                    tracelist2.append("* * * Request timed out.")
+                    tracelist2.append(tracelist1)
+                    tracelist1.clear()
                     #Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
                 timeReceived = time.time()
                 timeLeft = timeLeft - howLongInSelect
                 if timeLeft <= 0:
+                    tracelist1.append(ttl)
                     tracelist1.append("* * * Request timed out.")
                     #Fill in start
                     #You should add the list above to your all traces list
-                    tracelist2.append("* * * Request timed out.")
+                    tracelist2.append(tracelist1)
+                    tracelist1.clear()
                     #Fill in end
             except timeout:
                 continue
@@ -121,38 +125,58 @@ def get_route(hostname):
 
                 if types == 11:
                     bytes = struct.calcsize("d")
-                    timeSent = struct.unpack("d", recvPacket[28:28 +
-                    bytes])[0]
+                    timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
+                    RTT = str(round((timeReceived - timeSent), 2))
                     #You should add your responses to your lists here
-                    tracelist1.append()
-                    tracelist2.append()
+                    tracelist1.append(ttl)
+                    tracelist1.append(RTT)
+                    tracelist1.append(addr)
+                    tracelist1.append(destAddr)
+                    tracelist2.append(tracelist1)
+                    tracelist1.clear()
                     #Fill in end
                 elif types == 3:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
+                    RTT = str(round((timeReceived - timeSent), 2))
                     #You should add your responses to your lists here
-                    tracelist1.append()
-                    tracelist2.append()
+                    tracelist1.append(ttl)
+                    tracelist1.append(RTT)
+                    tracelist1.append(addr)
+                    tracelist1.append(destAddr)
+                    tracelist2.append(tracelist1)
+                    tracelist1.clear()
                     #Fill in end
                 elif types == 0:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
+                    RTT = str(round((timeReceived - timeSent), 2))
                     #You should add your responses to your lists here and return your list if your destination IP is met
-                    tracelist1.append()
-                    tracelist2.append()
+                    tracelist1.append(ttl)
+                    tracelist1.append(RTT)
+                    tracelist1.append(addr)
+                    tracelist1.append(destAddr)
+                    tracelist2.append(tracelist1)
+                    tracelist1.clear()
                     #Fill in end
                 else:
                     #Fill in start
+                    RTT = str(round((timeReceived - timeSent), 2))
                     #If there is an exception/error to your if statements, you should append that to your list here
-                    tracelist1.append()
-                    tracelist2.append()
+                    tracelist1.append(ttl)
+                    tracelist1.append(RTT)
+                    tracelist1.append(addr)
+                    tracelist1.append(destAddr)
+                    tracelist2.append(tracelist1)
+                    tracelist1.clear()
                     #Fill in end
                 break
             finally:
                 mySocket.close()
+                tracelist1.clear()
 
 if __name__ == '__main__':
     get_route("google.co.il")
