@@ -129,7 +129,7 @@ def get_route(hostname):
                 #Fill in end
                 try: #try to fetch the hostname
                     #Fill in start
-                    destAddr = gethostbyname(hostname)
+                    destAddr = gethostbyname(addr[0])[0]
                     #Fill in end
                 except herror:   #if the host does not provide a hostname
                     #Fill in start
@@ -144,12 +144,11 @@ def get_route(hostname):
                     #You should add your responses to your lists here
                     tracelist1.append(str(ttl))
                     tracelist1.append(RTT)
-                    tracelist1.append(addr)
-                    tracelist1.append(destAddr)
+                    tracelist1.append(addr[0])
+                    tracelist1.append(destAddr[0])
                     tracelist2.append(tracelist1)
                     print('Type:11')
-                    for i in tracelist2:
-                        print(i)
+                    print(tracelist2)
                     #Fill in end
                 elif types == 3:
                     bytes = struct.calcsize("d")
@@ -159,12 +158,11 @@ def get_route(hostname):
                     #You should add your responses to your lists here
                     tracelist1.append(str(ttl))
                     tracelist1.append(RTT)
-                    tracelist1.append(addr)
-                    tracelist1.append(destAddr)
+                    tracelist1.append(addr[0])
+                    tracelist1.append(destAddr[0])
                     tracelist2.append(tracelist1)
                     print('Type:3')
-                    for i in tracelist2:
-                        print(i)
+                    print(tracelist2)
                     #Fill in end
                 elif types == 0:
                     bytes = struct.calcsize("d")
@@ -174,8 +172,8 @@ def get_route(hostname):
                     #You should add your responses to your lists here and return your list if your destination IP is met
                     tracelist1.append(str(ttl))
                     tracelist1.append(RTT)
-                    tracelist1.append(addr)
-                    tracelist1.append(destAddr)
+                    tracelist1.append(addr[0])
+                    tracelist1.append(destAddr[0])
                     tracelist2.append(tracelist1)
                     print('Type:0')
                     print(tracelist2)
@@ -187,12 +185,11 @@ def get_route(hostname):
                     #If there is an exception/error to your if statements, you should append that to your list here
                     tracelist1.append(str(ttl))
                     tracelist1.append(RTT)
-                    tracelist1.append(addr)
-                    tracelist1.append(destAddr)
+                    tracelist1.append(addr[0])
+                    tracelist1.append(destAddr[0])
                     tracelist2.append(tracelist1)
                     print(6)
-                    for i in tracelist2:
-                        print(i)
+                    print(tracelist2)
                     #Fill in end
                 break
             finally:
