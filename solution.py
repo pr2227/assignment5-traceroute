@@ -142,7 +142,7 @@ def get_route(hostname):
                     #Fill in start
                     RTT = str(round((timeReceived - timeSent), 2))
                     #You should add your responses to your lists here
-                    tracelist1.append(ttl)
+                    tracelist1.append(str(ttl))
                     tracelist1.append(RTT)
                     tracelist1.append(addr)
                     tracelist1.append(destAddr)
@@ -157,7 +157,7 @@ def get_route(hostname):
                     #Fill in start
                     RTT = str(round((timeReceived - timeSent), 2))
                     #You should add your responses to your lists here
-                    tracelist1.append(ttl)
+                    tracelist1.append(str(ttl))
                     tracelist1.append(RTT)
                     tracelist1.append(addr)
                     tracelist1.append(destAddr)
@@ -172,20 +172,20 @@ def get_route(hostname):
                     #Fill in start
                     RTT = str(round((timeReceived - timeSent), 2))
                     #You should add your responses to your lists here and return your list if your destination IP is met
-                    tracelist1.append(ttl)
+                    tracelist1.append(str(ttl))
                     tracelist1.append(RTT)
                     tracelist1.append(addr)
                     tracelist1.append(destAddr)
                     tracelist2.append(tracelist1)
                     print('Type:0')
-                    for i in tracelist2:
-                        print(i)
+                    print(tracelist2)
+                    return tracelist2
                     #Fill in end
                 else:
                     #Fill in start
                     RTT = str(round((timeReceived - timeSent), 2))
                     #If there is an exception/error to your if statements, you should append that to your list here
-                    tracelist1.append(ttl)
+                    tracelist1.append(str(ttl))
                     tracelist1.append(RTT)
                     tracelist1.append(addr)
                     tracelist1.append(destAddr)
