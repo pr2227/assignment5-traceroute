@@ -90,34 +90,33 @@ def get_route(hostname):
             mySocket.setsockopt(IPPROTO_IP, IP_TTL, struct.pack('I', ttl))
             mySocket.settimeout(TIMEOUT)
             try:
+                #print('Start of Try')
                 d = build_packet()
                 mySocket.sendto(d, (hostname, 0))
                 t= time.time()
                 startedSelect = time.time()
                 whatReady = select.select([mySocket], [], [], timeLeft)
                 howLongInSelect = (time.time() - startedSelect)
+                #print('Before whatready')
+                #print(whatReady[0])
                 if whatReady[0] == []: # Timeout
-                    #tracelist1.append(str(ttl))
+                    #print('Start of Try If whatReady')
                     tracelist1.append("* * * Request timed out.")
                     #Fill in start
                     #You should add the list above to your all traces list
                     tracelist2.append(tracelist1)
-                    # print(1)
-                    # for i in tracelist2:
-                    #     print(i)
                     #Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
                 timeReceived = time.time()
                 timeLeft = timeLeft - howLongInSelect
+                #print('Before timeLeft' + str(timeLeft) )
                 if timeLeft <= 0:
+                    #print('Start of Try IF timeLeft')
                     #tracelist1.append(str(ttl))
                     tracelist1.append("* * * Request timed out.")
                     #Fill in start
                     #You should add the list above to your all traces list
                     tracelist2.append(tracelist1)
-                    # print(2)
-                    # for i in tracelist2:
-                    #     print(i)
                     #Fill in end
             except timeout:
                 continue
@@ -125,8 +124,8 @@ def get_route(hostname):
             else:
                 #Fill in start
                 #Fetch the icmp type from the IP packet
-                recPacket, addr = mySocket.recvfrom(1024)
-                types, code, checksum, identifier, sequenceNum = struct.unpack("bbHHh",recPacket[20:28])
+                #recPacket, addr = mySocket.recvfrom(1024)
+                types, code, checksum, identifier, sequenceNum = struct.unpack("bbHHh",recvPacket[20:28])
                 #Fill in end
                 try: #try to fetch the hostname
                     #Fill in start
