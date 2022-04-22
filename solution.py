@@ -97,7 +97,7 @@ def get_route(hostname):
                 whatReady = select.select([mySocket], [], [], timeLeft)
                 howLongInSelect = (time.time() - startedSelect)
                 if whatReady[0] == []: # Timeout
-                    tracelist1.append(str(ttl))
+                    #tracelist1.append(str(ttl))
                     tracelist1.append("* * * Request timed out.")
                     #Fill in start
                     #You should add the list above to your all traces list
@@ -110,7 +110,7 @@ def get_route(hostname):
                 timeReceived = time.time()
                 timeLeft = timeLeft - howLongInSelect
                 if timeLeft <= 0:
-                    tracelist1.append(str(ttl))
+                    #tracelist1.append(str(ttl))
                     tracelist1.append("* * * Request timed out.")
                     #Fill in start
                     #You should add the list above to your all traces list
@@ -130,11 +130,11 @@ def get_route(hostname):
                 #Fill in end
                 try: #try to fetch the hostname
                     #Fill in start
-                    destAddr = gethostbyname(addr[0])[0]
+                    hostAddr = gethostbyaddr(addr[0])[0]
                     #Fill in end
                 except herror:   #if the host does not provide a hostname
                     #Fill in start
-                    destAddr = 'hostname not returnable'
+                    hostAddr = 'hostname not returnable'
                     #Fill in end
                 print("types = {}".format(types))
                 if types == 11:
@@ -146,7 +146,7 @@ def get_route(hostname):
                     tracelist1.append(str(ttl))
                     tracelist1.append(RTT)
                     tracelist1.append(addr[0])
-                    tracelist1.append(destAddr[0])
+                    tracelist1.append(hostAddr)
                     tracelist2.append(tracelist1)
                     #print('Type:11')
                     #for i in tracelist2:
@@ -161,7 +161,7 @@ def get_route(hostname):
                     tracelist1.append(str(ttl))
                     tracelist1.append(RTT)
                     tracelist1.append(addr[0])
-                    tracelist1.append(destAddr[0])
+                    tracelist1.append(hostAddr)
                     tracelist2.append(tracelist1)
                     #print('Type:3')
                     #for i in tracelist2:
@@ -176,7 +176,7 @@ def get_route(hostname):
                     tracelist1.append(str(ttl))
                     tracelist1.append(RTT)
                     tracelist1.append(addr[0])
-                    tracelist1.append(destAddr[0])
+                    tracelist1.append(hostAddr)
                     tracelist2.append(tracelist1)
                     #print('Type:0')
                     print(tracelist2)
