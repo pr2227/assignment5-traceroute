@@ -136,7 +136,7 @@ def get_route(hostname):
                     #Fill in start
                     destAddr = 'hostname not returnable'
                     #Fill in end
-
+                print("types = {}".format(types))
                 if types == 11:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
