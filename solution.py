@@ -79,7 +79,7 @@ def get_route(hostname):
 
     for ttl in range(1,MAX_HOPS):
         for tries in range(TRIES):
-            print('Start of for loop')
+            #print('Start of for loop')
             tracelist1 = [] #This is your list to use when iterating through each trace 
             #Fill in start
             # Make a raw socket named mySocket
@@ -136,7 +136,7 @@ def get_route(hostname):
                     #Fill in start
                     hostAddr = 'hostname not returnable'
                     #Fill in end
-                print("types = {}".format(types))
+                #print("types = {}".format(types))
                 if types == 11:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
