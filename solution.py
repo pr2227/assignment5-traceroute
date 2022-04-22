@@ -74,13 +74,12 @@ def build_packet():
 
 def get_route(hostname):
     timeLeft = TIMEOUT
-    tracelist1 = [] #This is your list to use when iterating through each trace 
     tracelist2 = [] #This is your list to contain all traces
     destAddr = gethostbyname(hostname) # Moved destAddr out of for loop to ensure the hostname is only looked up once
 
     for ttl in range(1,MAX_HOPS):
         for tries in range(TRIES):
-            
+            tracelist1 = [] #This is your list to use when iterating through each trace 
             #Fill in start
             # Make a raw socket named mySocket
             icmp = getprotobyname("icmp")
@@ -102,7 +101,9 @@ def get_route(hostname):
                     #Fill in start
                     #You should add the list above to your all traces list
                     tracelist2.append(tracelist1)
-                    tracelist1.clear()
+                    print(1)
+                    for i in tracelist2:
+                        print(i)
                     #Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
                 timeReceived = time.time()
@@ -113,7 +114,9 @@ def get_route(hostname):
                     #Fill in start
                     #You should add the list above to your all traces list
                     tracelist2.append(tracelist1)
-                    tracelist1.clear()
+                    print(2)
+                    for i in tracelist2:
+                        print(i)
                     #Fill in end
             except timeout:
                 continue
@@ -144,7 +147,9 @@ def get_route(hostname):
                     tracelist1.append(addr)
                     tracelist1.append(destAddr)
                     tracelist2.append(tracelist1)
-                    tracelist1.clear()
+                    print('Type:11')
+                    for i in tracelist2:
+                        print(i)
                     #Fill in end
                 elif types == 3:
                     bytes = struct.calcsize("d")
@@ -157,7 +162,9 @@ def get_route(hostname):
                     tracelist1.append(addr)
                     tracelist1.append(destAddr)
                     tracelist2.append(tracelist1)
-                    tracelist1.clear()
+                    print('Type:3')
+                    for i in tracelist2:
+                        print(i)
                     #Fill in end
                 elif types == 0:
                     bytes = struct.calcsize("d")
@@ -170,7 +177,9 @@ def get_route(hostname):
                     tracelist1.append(addr)
                     tracelist1.append(destAddr)
                     tracelist2.append(tracelist1)
-                    tracelist1.clear()
+                    print('Type:0')
+                    for i in tracelist2:
+                        print(i)
                     #Fill in end
                 else:
                     #Fill in start
@@ -181,12 +190,14 @@ def get_route(hostname):
                     tracelist1.append(addr)
                     tracelist1.append(destAddr)
                     tracelist2.append(tracelist1)
-                    tracelist1.clear()
+                    print(6)
+                    for i in tracelist2:
+                        print(i)
                     #Fill in end
                 break
             finally:
+                print('Closing mySocket')
                 mySocket.close()
-                tracelist1.clear()
 
 if __name__ == '__main__':
     get_route("google.co.il")
