@@ -184,13 +184,8 @@ def get_route(hostname):
                     #Fill in end
                 else:
                     #Fill in start
-                    RTT = str(round((timeReceived - timeSent), 2))
                     #If there is an exception/error to your if statements, you should append that to your list here
-                    tracelist1.append(str(ttl))
-                    tracelist1.append(RTT)
-                    tracelist1.append(addr[0])
-                    tracelist1.append(destAddr[0])
-                    tracelist2.append(tracelist1)
+                    tracelist2.append('Error')
                     #print(6)
                     #for i in tracelist2:
                         #print(i)
